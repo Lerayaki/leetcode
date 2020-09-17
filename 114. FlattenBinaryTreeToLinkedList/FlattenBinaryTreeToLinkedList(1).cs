@@ -37,6 +37,5 @@ public class Solution {
             InnerFlatten(root.left, list);
         if (root.right != null)
             InnerFlatten(root.right, list);
-        
     }
 }
