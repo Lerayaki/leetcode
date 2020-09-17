@@ -29,7 +29,6 @@ var flatten = function(root) {
         
         if (root.right != null)
             inner_flatten(root.right)
-        
     }
     inner_flatten(root)
 
