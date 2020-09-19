@@ -1,27 +1,15 @@
+// Runtime: 100 ms, faster than 77.46% of C# online submissions for Jump Game.
+// Memory Usage: 26.2 MB, less than 39.79% of C# online submissions for Jump Game.
 public class Solution {
     public bool CanJump(int[] nums)
     {
-        List<int> jumps = new List<int>();
-        int index = 0;
-        while (true)
-        {
-            if (index == nums.Length - 1)
-                return true;
-
-            if (index == 0 && nums[0] == 0)
-                return false;
-
-            if (index > nums.Length-1 || nums[index] == 0)
-            {
-                index -= jumps.Last();
-                jumps.RemoveAt(jumps.Count - 1);
-            }
-            else
-            {
-                jumps.Add(nums[index]);
-                index += nums[index];
-                nums[index - jumps.Last()]--;
-            }
+        if (nums.Length <= 1)
+            return true;
+        int j = nums.Length-1;
+        for (int i=nums.Length-2; i>=0; i--){
+            if (i+nums[i] >= j)
+                j = i;
         }
+        return j == 0;
     }
 }
