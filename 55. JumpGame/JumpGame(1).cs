@@ -1,23 +1,27 @@
 public class Solution {
     public bool CanJump(int[] nums)
     {
-        return inner_CanJump(nums, 0);
-    }
-    public bool inner_CanJump(int[] nums, int i)
-    {
-        if (i == nums.Length - 1)
-            return true;
-        if (i >= nums.Length)
-            return false;
-
-        int next = nums[i]+i;
-        bool canJump = false;
-
-        while (next > 0 && !canJump)
+        List<int> jumps = new List<int>();
+        int index = 0;
+        while (true)
         {
-            canJump = inner_CanJump(nums, next);
-            next--;
+            if (index == nums.Length - 1)
+                return true;
+
+            if (index == 0 && nums[0] == 0)
+                return false;
+
+            if (index > nums.Length-1 || nums[index] == 0)
+            {
+                index -= jumps.Last();
+                jumps.RemoveAt(jumps.Count - 1);
+            }
+            else
+            {
+                jumps.Add(nums[index]);
+                index += nums[index];
+                nums[index - jumps.Last()]--;
+            }
         }
-        return canJump;
     }
 }
