@@ -1,29 +1,24 @@
-// Runtime: 84 ms, faster than 97.95% of C# online submissions for Same Tree.
-// Memory Usage: 24.9 MB, less than 5.14% of C# online submissions for Same Tree.
+// Runtime: 80 ms, faster than 35.96% of JavaScript online submissions for Same Tree.
+// Memory Usage: 38.8 MB, less than 5.11% of JavaScript online submissions for Same Tree.
 /**
  * Definition for a binary tree node.
- * public class TreeNode {
- *     public int val;
- *     public TreeNode left;
- *     public TreeNode right;
- *     public TreeNode(int val=0, TreeNode left=null, TreeNode right=null) {
- *         this.val = val;
- *         this.left = left;
- *         this.right = right;
- *     }
+ * function TreeNode(val, left, right) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.left = (left===undefined ? null : left)
+ *     this.right = (right===undefined ? null : right)
  * }
  */
-public class Solution {
-    public bool IsSameTree(TreeNode p, TreeNode q) {
-        if (p == null && q == null)
-            return true;
-        if (p == null)
-            return false;
-        if (q == null)
-            return false;
-        if (p.val != q.val)
-            return false;
-        return IsSameTree(p.left, q.left) && IsSameTree(p.right, q.right);
-        
-    }
-}
+/**
+ * @param {TreeNode} p
+ * @param {TreeNode} q
+ * @return {boolean}
+ */
+var isSameTree = function(p, q) {
+    if (p == null && q == null)
+        return true
+    if (p == null || q == null)
+        return false
+    if (p.val != q.val)
+        return false
+    return isSameTree(p.left,q.left) && isSameTree(p.right, q.right)
+};
