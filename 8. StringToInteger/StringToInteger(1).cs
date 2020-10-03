@@ -28,7 +28,6 @@ public class Solution {
         int num = 0;
         while (index < str.Length && str[index] >= '0' && str[index] <= '9')
         {
-            //Out of int32 bounds
             if (num >= Int32.MaxValue / 10 && getIntFromDigitChar(str[index]) % 10 > 7)
             {
                 if (neg)
